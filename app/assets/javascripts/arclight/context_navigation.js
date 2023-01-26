@@ -92,7 +92,6 @@ class Placeholder {
    */
   /* eslint-disable class-methods-use-this */
   buildElement() {
-
     // DUL CUSTOMIZATION: Use only one wrapper div; repeat the placeholders in it.
     // Bump from 3 to 6 so placeholder pattern repeats 5x. This makes it easier to
     // conditionally show fewer lines using CSS.
@@ -147,7 +146,7 @@ class ContextNavigation {
 
     // DUL CUSTOMIZATION: Account for DUL component IDs which have "_" between
     // the eadid & component ref.
-    return this.data.arclight.originalDocument.replace(this.eadid+'_', '');
+    return this.data.arclight.originalDocument.replace(this.eadid + '_', '');
   }
 
   getData() {
@@ -158,7 +157,7 @@ class ContextNavigation {
     // DUL CUSTOMIZATION: If there are a lot of children to load, add a
     // gentle message about the potential delay.
     var childrencount = parseInt(this.el.parent().data('childrencount'));
-    if(childrencount > 200) {
+    if (childrencount > 200) {
       this.el.prepend('<div class="load-warning">\
         <strong> <i class="fas fa-clock"></i> Loading ' +
         childrencount.toLocaleString() +

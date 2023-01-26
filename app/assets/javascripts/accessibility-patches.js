@@ -13,7 +13,6 @@
 /* ============================================================ */
 
 function applyAccessibilityPatches() {
-
   /* ---------------------------------- */
   /* Area: typeahead search box         */
   /* ---------------------------------- */
@@ -35,7 +34,7 @@ function applyAccessibilityPatches() {
   /* Platform: Blacklight */
   /* Version fixed in: (not fixed) */
   /* https://github.com/projectblacklight/blacklight/blob/master/app/views/catalog/_results_pagination.html.erb#L4-L6 */
-  
+
   $('nav[role="region"]').attr('role', 'navigation');
 
 
@@ -50,7 +49,7 @@ function applyAccessibilityPatches() {
   /* Version fixed in: TBD */
   /* For now, we'll just remove all but the last one when this happens. */
 
-  $("div.toggle-bookmark:not(:last-of-type)").remove();
+  $('div.toggle-bookmark:not(:last-of-type)').remove();
 
   /* Issue: in grouped search results (index) view, if the top-level collection appears */
   /* within the top 3 results, its bookmark checkbox/label are duplicates of those same */
@@ -60,17 +59,17 @@ function applyAccessibilityPatches() {
   /* Platform: DUL-ArcLight (core doesn't have checkboxes in grouped view) */
   /* Version fixed in: TBD */
 
-  $(".group-doc-actions").find("label[id^='bookmark_toggle_']").each(function(){
+  $('.group-doc-actions').find("label[id^='bookmark_toggle_']").each(function () {
     $(this).attr('id', $(this).attr('id') + '_group');
     $(this).text('Collection ' + $(this).text());
   });
-  $(".group-doc-actions").find("form[aria-labelledby^='bookmark_toggle_']").each(function(){
+  $('.group-doc-actions').find("form[aria-labelledby^='bookmark_toggle_']").each(function () {
     $(this).attr('aria-labelledby', $(this).attr('aria-labelledby') + '_group');
   });
-  $(".group-doc-actions").find("label[for^='toggle-bookmark_']").each(function(){
+  $('.group-doc-actions').find("label[for^='toggle-bookmark_']").each(function () {
     $(this).attr('for', $(this).attr('for') + '_group');
   });
-  $(".group-doc-actions").find("input[id^='toggle-bookmark_']").each(function(){
+  $('.group-doc-actions').find("input[id^='toggle-bookmark_']").each(function () {
     $(this).attr('id', $(this).attr('id') + '_group');
   });
 
@@ -79,12 +78,12 @@ function applyAccessibilityPatches() {
   /* Area: Grouped Results Wrapper      */
   /* ---------------------------------- */
   /* Issue: keyboard nav link to "Skip to First Result" needs a #documents    */
-  /* id when in grouped view for search results, else that link goes nowhere. */ 
+  /* id when in grouped view for search results, else that link goes nowhere. */
   /* https://github.com/projectblacklight/arclight/blob/master/app/views/catalog/_group.html.erb#L2 */
   /* Platform: ArcLight */
   /* Version fixed in: TBD */
 
-  $("div.al-grouped-results").attr('id', 'documents');
+  $('div.al-grouped-results').attr('id', 'documents');
 
 
   /* ---------------------------------- */
@@ -92,10 +91,10 @@ function applyAccessibilityPatches() {
   /* ---------------------------------- */
   /* Issue: we have ul > ul nesting; and need ul > li > ul for accessibility */
 
-  $("ul.prev-siblings").each(function() {
-    if(!$(this).parent().is('li')) {
-      $(this).wrap("<li></li>");
-    };
+  $('ul.prev-siblings').each(function () {
+    if (!$(this).parent().is('li')) {
+      $(this).wrap('<li></li>');
+    }
   });
 
   /* ---------------------------------- */
@@ -107,14 +106,11 @@ function applyAccessibilityPatches() {
   /* of the first character used in the block. For now we can try this as a        */
   /* client-side DOM modification and limit it to <p> & <dd> elements. */
 
-  $("p, dd").each(function() {
+  $('p, dd').each(function () {
     $(this).attr('dir', 'auto');
   });
-
 }
 
 Blacklight.onLoad(function () {
-
   applyAccessibilityPatches();
-
 });

@@ -21,12 +21,12 @@ const ACTIONABLE_ELEMENTS = [
   'button:not([disabled])'
 ].join(',');
 
-const getFocusableNodes = function(modalEl) {
+const getFocusableNodes = function (modalEl) {
   const nodes = $(modalEl).get(0).querySelectorAll(FOCUSABLE_ELEMENTS);
   const focusable = [];
   nodes.forEach((node) => {
-    if ( $(node).is(":visible") ) { focusable.push(node); }
-  })
+    if ($(node).is(':visible')) { focusable.push(node); }
+  });
   return focusable;
 };
 
@@ -36,7 +36,7 @@ $(document).on('shown.bs.modal', function (e) {
   // loaded.blacklight.blacklight-modal may sometimes be fired first
   let modalEl = e.target;
   let index = ACTIVE_MODALS.indexOf(modalEl);
-  if ( index < 0 ) {
+  if (index < 0) {
     index = ACTIVE_MODALS.push(modalEl);
     index -= 1;
   }
@@ -46,34 +46,34 @@ $(document).on('shown.bs.modal', function (e) {
   $(modalEl).find('button.close').focus();
 });
 
-$(document).on('hide.bs.modal', function(e) {
+$(document).on('hide.bs.modal', function (e) {
   let modalEl = e.target;
   let index = ACTIVE_MODALS.indexOf(modalEl);
-  if ( index > -1 ) {
+  if (index > -1) {
     ACTIVE_MODALS.splice(index, 1);
   }
-})
+});
 
 let debugInterval; let debugLastActive;
-let debugActive = function() {
-  if ( debugInterval ) {
+let debugActive = function () {
+  if (debugInterval) {
     clearInterval(debugInterval);
     debugInterval = null;
     return;
   }
   setInterval(() => {
-    if ( debugLastActive != document.activeElement ) {
+    if (debugLastActive != document.activeElement) {
       debugLastActive = document.activeElement;
-      console.log("::", debugLastActive);
+      console.log('::', debugLastActive);
     }
   }, 1000);
-}
+};
 
-$(document).on('loaded.blacklight.blacklight-modal', function(e) {
+$(document).on('loaded.blacklight.blacklight-modal', function (e) {
   // if (!$activeModal) { $activeModal = $(e.target); }
   let modalEl = e.target;
   let index = ACTIVE_MODALS.indexOf(modalEl);
-  if ( index < 0 ) {
+  if (index < 0) {
     index = ACTIVE_MODALS.push(modalEl);
     index -= 1;
   }
@@ -93,7 +93,7 @@ $(document).on('loaded.blacklight.blacklight-modal', function(e) {
   }
   $possibleItem.focus();
   $activeModal.data('lastActive', $possibleItem.get(0));
-})
+});
 
 $(document).on('keydown', function (e) {
   const KEY_TAB = 9;
@@ -129,5 +129,4 @@ $(document).on('keydown', function (e) {
     default:
       break;
   } // end switch
-
 });

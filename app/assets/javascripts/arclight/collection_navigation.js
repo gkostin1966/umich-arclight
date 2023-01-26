@@ -101,14 +101,13 @@
         Blacklight.doBookmarkToggleBehavior();
 
         // DUL CUSTOMIZATION: 'deep' clone sortAndPerPage and append ID
-        if ( $( sortPerPage ).text().indexOf('Previous') > -1 ) {
-          $( sortPerPage ).clone( true ).prop('id', 'sortAndPerPageBottom' ).insertAfter('#documents');
+        if ($(sortPerPage).text().indexOf('Previous') > -1) {
+          $(sortPerPage).clone(true).prop('id', 'sortAndPerPageBottom').insertAfter('#documents');
           // fix duplicate IDs
-          $("#sortAndPerPageBottom #sort-dropdown").prop('id', 'sort-dropdown-bottom' );
-          $("#sortAndPerPageBottom #per_page-dropdown").prop('id', 'per_page-dropdown-bottom' );
-          $("#sortAndPerPageBottom #Layer_1").prop('id', 'Layer_1-bottom' );
+          $('#sortAndPerPageBottom #sort-dropdown').prop('id', 'sort-dropdown-bottom');
+          $('#sortAndPerPageBottom #per_page-dropdown').prop('id', 'per_page-dropdown-bottom');
+          $('#sortAndPerPageBottom #Layer_1').prop('id', 'Layer_1-bottom');
         }
-
       });
     }
   };

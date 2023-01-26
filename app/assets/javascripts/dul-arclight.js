@@ -1,5 +1,4 @@
 Blacklight.onLoad(function () {
-
   /* =================== */
   /* BOOTSTRAP PLUGINS   */
   /* =================== */
@@ -9,20 +8,20 @@ Blacklight.onLoad(function () {
   /* this way. */
 
   var popOverSettings = {
-      placement: 'right',
-      container: 'body',
-      boundary: 'viewport',
-      html: true,
-      trigger: 'hover',
-      selector: '[data-toggle="popover"]',
-      content: function () {
-        return $(this).data('content');
-      }
-  }
+    placement: 'right',
+    container: 'body',
+    boundary: 'viewport',
+    html: true,
+    trigger: 'hover',
+    selector: '[data-toggle="popover"]',
+    content: function () {
+      return $(this).data('content');
+    }
+  };
 
   $('body').popover(popOverSettings);
 
-  $("#sidebar .sidebar-scroll-wrapper").scroll(function() {
+  $('#sidebar .sidebar-scroll-wrapper').scroll(function () {
     $('[data-toggle="popover"]').popover('hide');
   });
 
@@ -54,8 +53,8 @@ Blacklight.onLoad(function () {
     }
   });
 
-  /* Fix autofocus for Firefox and Safari*/
-  $(".homepage").find("input#q").focus();
+  /* Fix autofocus for Firefox and Safari */
+  $('.homepage').find('input#q').focus();
 
 
   /* Adding a click event to the Twitter Typeahead so that  */
@@ -73,7 +72,7 @@ Blacklight.onLoad(function () {
 
   /* If the input value has a length of at least 1, display the */
   /* clear-search button. */
-  $('input#q').keyup(function() {
+  $('input#q').keyup(function () {
     inputValue = $('input#q').val().length;
     if (inputValue > 0) {
       $('#clear-search').css('display', 'inline');
@@ -100,16 +99,14 @@ Blacklight.onLoad(function () {
 
 
   /* DUL masthead primary navigation menu toggle */
-  $('a#full-menu-toggle').on('click',function(e) {
-
+  $('a#full-menu-toggle').on('click', function (e) {
     e.preventDefault();
 
     $('#dul-masthead-region-megamenu').slideToggle();
 
     // toggle FA content
-    var el  = $('a#full-menu-toggle span.nav-icon');
+    var el = $('a#full-menu-toggle span.nav-icon');
     el.html(el.html() == '<i class="fas fa-bars"></i>' ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>');
-
   });
 
 
@@ -118,7 +115,7 @@ Blacklight.onLoad(function () {
   /* ============== */
 
   // Remove 'sr-only' class from applied search params label
-  $('#appliedParams span.constraints-label').removeClass("sr-only");
+  $('#appliedParams span.constraints-label').removeClass('sr-only');
 
 
   /* =========== */
@@ -133,7 +130,7 @@ Blacklight.onLoad(function () {
     $('#sidebar').modal('hide');
   });
 
-  $('.sidebar-nav-toggle').click(function() {
+  $('.sidebar-nav-toggle').click(function () {
     $('#sidebar').modal('toggle');
   });
 
@@ -148,7 +145,7 @@ Blacklight.onLoad(function () {
 
   /* Clicking side-drawer sidebar links that lead to in-page anchors must */
   /* close the sidebar */
-  $('#sidebar a[data-turbolinks="false"]').click(function() {
+  $('#sidebar a[data-turbolinks="false"]').click(function () {
     $('#sidebar').modal('hide');
   });
 
@@ -156,7 +153,7 @@ Blacklight.onLoad(function () {
   /* #facet-panel-collapse */
 
   // smooth scroll
-  $('.smooth-scroll').click(function() {
+  $('.smooth-scroll').click(function () {
     var sectionTo = $(this).attr('href');
     $('html, body').animate({
       scrollTop: $(sectionTo).offset().top
@@ -188,89 +185,83 @@ Blacklight.onLoad(function () {
   $pathsToTarget += ', ';
   $pathsToTarget += '#content .al-grouped-results .responsiveTruncatorToggle';
 
-  updateAllTruncatedText = function() {
-    $( $pathsToTarget ).text("show more").append(" <i class='fas fa-chevron-circle-down'></i>").wrapInner("<span class='btn-wrapper'></span>");
-    $( $pathsToTarget ).addClass('showing-less');
-  }
+  updateAllTruncatedText = function () {
+    $($pathsToTarget).text('show more').append(" <i class='fas fa-chevron-circle-down'></i>").wrapInner("<span class='btn-wrapper'></span>");
+    $($pathsToTarget).addClass('showing-less');
+  };
 
-  toggleExpanded = function() {
-    if ( $($this).parent('.card-text').hasClass('expanded') ) {
+  toggleExpanded = function () {
+    if ($($this).parent('.card-text').hasClass('expanded')) {
       $($this).parent('.card-text').removeClass('expanded');
     } else {
       $($this).parent('.card-text').addClass('expanded');
     }
-  }
+  };
 
-  toggleText = function() {
+  toggleText = function () {
     if ($($this).hasClass('showing-less')) {
       $($this).removeClass('showing-less').addClass('showing-more');
-      $($this).text("show less").append(" <i class='fas fa-chevron-circle-up'></i>").wrapInner("<span class='btn-wrapper'></span>");
+      $($this).text('show less').append(" <i class='fas fa-chevron-circle-up'></i>").wrapInner("<span class='btn-wrapper'></span>");
     } else {
       $($this).removeClass('showing-more').addClass('showing-less');
-      $($this).text("show more").append(" <i class='fas fa-chevron-circle-down'></i>").wrapInner("<span class='btn-wrapper'></span>");
+      $($this).text('show more').append(" <i class='fas fa-chevron-circle-down'></i>").wrapInner("<span class='btn-wrapper'></span>");
     }
-  }
+  };
 
   // initial page load
   updateAllTruncatedText();
 
   // click collection or card button
-  $( $pathsToTarget ).click(function() {
+  $($pathsToTarget).click(function () {
     $this = this;
     toggleExpanded($this);
     toggleText($this);
   });
 
-  $(window).bind("resize", function() {
-
+  $(window).bind('resize', function () {
     $('.responsiveTruncatorToggle').parent('.card-text').removeClass('expanded');
 
     updateAllTruncatedText();
 
     // need to do this again after binding resize?
-    $('.responsiveTruncatorToggle').click(function() {
+    $('.responsiveTruncatorToggle').click(function () {
       $this = this;
       toggleExpanded($this);
       toggleText($this);
     });
-
   });
 
 
   // account for dynamically loaded content
-  if ($("body").hasClass("blacklight-catalog-show")) {
-
+  if ($('body').hasClass('blacklight-catalog-show')) {
     // wait for document placeholder content to go away
-    var checkExistDocument = setInterval(function() {
-
-      var placeholderPath = $("#document .al-hierarchy-placeholder").html();
+    var checkExistDocument = setInterval(function () {
+      var placeholderPath = $('#document .al-hierarchy-placeholder').html();
 
       if (undefined === placeholderPath) {
-          updateAllTruncatedText();
+        updateAllTruncatedText();
 
           // click series button
-          $( "#document #documents .responsiveTruncatorToggle" ).on( "click", function() {
+        $('#document #documents .responsiveTruncatorToggle').on('click', function () {
+          $this = this;
+          toggleExpanded($this);
+          toggleText($this);
+        });
+
+        $(window).bind('resize', function () {
+          updateAllTruncatedText();
+
+            // need to do this again after binding resize?
+          $('#document #documents .responsiveTruncatorToggle').on('click', function () {
             $this = this;
             toggleExpanded($this);
             toggleText($this);
           });
+        });
 
-          $(window).bind("resize", function() {
-            updateAllTruncatedText();
-
-            // need to do this again after binding resize?
-            $( "#document #documents .responsiveTruncatorToggle" ).on( "click", function() {
-              $this = this;
-              toggleExpanded($this);
-              toggleText($this);
-            });
-
-          });
-
-          clearInterval(checkExistDocument);
+        clearInterval(checkExistDocument);
       }
     }, 100);
-
   }
 
 
@@ -279,26 +270,23 @@ Blacklight.onLoad(function () {
   /* Scroll to hash tag anchor after turbolinks load  */
   /* ================================================ */
 
-  $(document).on('ready turbolinks:load', function() {
+  $(document).on('ready turbolinks:load', function () {
     loadMastHTML();
     scrollToHashTagAnchor();
   });
 
-  loadMastHTML = function() {
-
-    //console.log('turbolinks triggered!');
+  loadMastHTML = function () {
+    // console.log('turbolinks triggered!');
 
     var $DULmastheadURL = 'https://library.duke.edu/masthead/load-masthead.js.php?width=1820&amp;fixed=false&ajax_reload=true&div=true';
 
-    $( "#dul-masthead-filler" ).load( $DULmastheadURL, function( response, status, xhr ) {
-      if ( status == "error" ) {
-        console.log( 'There was an error loading external masthead html:' );
-        console.log ( xhr.status + ' -- ' + xhr.statusText );
+    $('#dul-masthead-filler').load($DULmastheadURL, function (response, status, xhr) {
+      if (status == 'error') {
+        console.log('There was an error loading external masthead html:');
+        console.log(xhr.status + ' -- ' + xhr.statusText);
       }
-
     });
-
-  }
+  };
 
   scrollToHashTagAnchor = function () {
     if (location.hash) {
@@ -311,6 +299,5 @@ Blacklight.onLoad(function () {
   /* Add FA icons */
   /* ================================================ */
 
-   $( "#content #emailLink" ).html('<i class="fas fa-envelope"></i> Email Bookmarks');
-
+  $('#content #emailLink').html('<i class="fas fa-envelope"></i> Email Bookmarks');
 });
