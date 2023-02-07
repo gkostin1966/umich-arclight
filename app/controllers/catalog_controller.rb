@@ -313,9 +313,12 @@ class CatalogController < ApplicationController
     # NOTE cannot add using_field here since it is to appear at the bottom
     # of the collection show page after other elements that are not part
     # of the metadata_partials config.
-    config.show.metadata_partials = %i[
+    config.show.metadata_partials_top = %i[
       summary_field
       background_field
+    ]
+
+    config.show.metadata_partials_bottom = %i[
       related_field
       indexed_terms_field
       indexes_field

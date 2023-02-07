@@ -24,41 +24,51 @@
       <section class="sidebar-scroll-wrapper">
         <nav id="about-collection-nav" aria-label="About the collection">
           <ul class='nav flex-column'>
-            <% unless blacklight_config.show.metadata_partials.nil? %>
-              <% blacklight_config.show.metadata_partials.each do |item| %>
-                <% next unless fields_have_content?(collection_doc(document), item) %>
-                <li class='nav-item'>
-                  <%= link_to t("arclight.views.show.sections.#{item}"),
-                    [
-                      solr_document_path(normalize_id(document.eadid)),
-                      "##{t("arclight.views.show.sections.#{item}").parameterize}"
-                    ].join, class: 'nav-link', data: { turbolinks: 'false' }
-                  %>
-                </li>
-              <% end %>
-
-              <%# Manually adding 'Contents' nav link. We want the link in the sidebar but the %>
-              <%# actual 'contents' section is detached from the show.metadata_partials config. %>
+            <% blacklight_config.show.metadata_partials_top.each do |item| %>
+              <% next unless fields_have_content?(collection_doc(document), item) %>
               <li class='nav-item'>
-                <%= link_to t("arclight.views.show.sections.contents"),
-                    [
-                      solr_document_path(normalize_id(document.eadid)),
-                      "##{t("arclight.views.show.sections.contents").parameterize}"
-                    ].join, class: 'nav-link', data: { turbolinks: 'false' }
-                  %>
-              </li>
-
-              <%# Manually adding 'using' nav link. We want the link in the sidebar but the %>
-              <%# actual 'using' section is detached from the show.metadata_partials config. %>
-              <li class='nav-item'>
-                <%= link_to t("arclight.views.show.sections.using_field"),
-                    [
-                      solr_document_path(normalize_id(document.eadid)),
-                      "##{t("arclight.views.show.sections.using_field").parameterize}"
-                    ].join, class: 'nav-link', data: { turbolinks: 'false' }
-                  %>
+                <%= link_to t("arclight.views.show.sections.#{item}"),
+                  [
+                    solr_document_path(normalize_id(document.eadid)),
+                    "##{t("arclight.views.show.sections.#{item}").parameterize}"
+                  ].join, class: 'nav-link', data: { turbolinks: 'false' }
+                %>
               </li>
             <% end %>
+
+            <%# Manually adding 'Contents' nav link. We want the link in the sidebar but the %>
+            <%# actual 'contents' section is detached from the show.metadata_partials config. %>
+            <li class='nav-item'>
+              <%= link_to t("arclight.views.show.sections.contents"),
+                  [
+                    solr_document_path(normalize_id(document.eadid)),
+                    "##{t("arclight.views.show.sections.contents").parameterize}"
+                  ].join, class: 'nav-link', data: { turbolinks: 'false' }
+                %>
+            </li>
+
+            <% blacklight_config.show.metadata_partials_bottom.each do |item| %>
+              <% next unless fields_have_content?(collection_doc(document), item) %>
+              <li class='nav-item'>
+                <%= link_to t("arclight.views.show.sections.#{item}"),
+                            [
+                              solr_document_path(normalize_id(document.eadid)),
+                              "##{t("arclight.views.show.sections.#{item}").parameterize}"
+                            ].join, class: 'nav-link', data: { turbolinks: 'false' }
+                %>
+              </li>
+            <% end %>
+
+            <%# Manually adding 'using' nav link. We want the link in the sidebar but the %>
+            <%# actual 'using' section is detached from the show.metadata_partials config. %>
+            <li class='nav-item'>
+              <%= link_to t("arclight.views.show.sections.using_field"),
+                  [
+                    solr_document_path(normalize_id(document.eadid)),
+                    "##{t("arclight.views.show.sections.using_field").parameterize}"
+                  ].join, class: 'nav-link', data: { turbolinks: 'false' }
+                %>
+            </li>
           </ul>
         </nav>
 
@@ -209,8 +219,8 @@
     </div>
 
 
-    <% unless blacklight_config.show.metadata_partials.nil? %>
-      <% blacklight_config.show.metadata_partials.each do |metadata| %>
+    <% unless blacklight_config.show.metadata_partials_top.nil? %>
+      <% blacklight_config.show.metadata_partials_top.each do |metadata| %>
         <% next unless fields_have_content?(@document, metadata) %>
         <%= render partial: 'custom_metadata',
           locals: { document: @document, field_accessor: metadata } %>
@@ -304,6 +314,20 @@
   </div>
 <% end %>
 -->
+
+<% if document.level == 'collection' %>
+
+  <div class="collection-overview-wrapper">
+
+    <% unless blacklight_config.show.metadata_partials_bottom.nil? %>
+      <% blacklight_config.show.metadata_partials_bottom.each do |metadata| %>
+        <% next unless fields_have_content?(@document, metadata) %>
+        <%= render partial: 'custom_metadata',
+                   locals: { document: @document, field_accessor: metadata } %>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
 
 <%# ==================================== %>
 <%# Access (Using these materials) Terms %>
