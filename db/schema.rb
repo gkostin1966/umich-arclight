@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_07_134158) do
+ActiveRecord::Schema.define(version: 2023_02_17_173119) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,20 @@ ActiveRecord::Schema.define(version: 2020_01_07_134158) do
     t.datetime "updated_at", null: false
     t.index ["document_id"], name: "index_bookmarks_on_document_id"
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
+  end
+
+  create_table "findingaids", force: :cascade do |t|
+    t.string "filename"
+    t.binary "content"
+    t.string "md5sum"
+    t.string "sha1sum"
+    t.string "slug"
+    t.string "eadid"
+    t.string "eadurl"
+    t.string "state"
+    t.string "error"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "searches", id: :serial, force: :cascade do |t|
