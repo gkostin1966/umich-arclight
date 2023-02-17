@@ -1,49 +1,51 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Filename:</strong>
-  <%= @findingaid.filename %>
-</p>
-
-<p>
-  <strong>Content:</strong>
-  <%= @findingaid.content %>
-</p>
-
-<p>
-  <strong>Md5sum:</strong>
-  <%= @findingaid.md5sum %>
-</p>
-
-<p>
-  <strong>Sha1sum:</strong>
-  <%= @findingaid.sha1sum %>
-</p>
-
-<p>
-  <strong>Slug:</strong>
-  <%= @findingaid.slug %>
-</p>
-
-<p>
-  <strong>Eadid:</strong>
-  <%= @findingaid.eadid %>
-</p>
-
-<p>
-  <strong>Eadurl:</strong>
-  <%= @findingaid.eadurl %>
-</p>
-
-<p>
-  <strong>State:</strong>
-  <%= @findingaid.state %>
-</p>
-
-<p>
-  <strong>Error:</strong>
-  <%= @findingaid.error %>
-</p>
-
-<%= link_to 'Edit', edit_findingaid_path(@findingaid) %> |
-<%= link_to 'Back', findingaids_path %>
+<div class="container">
+  <p id="notice"><%= notice %></p>
+  <h1>Showing Finding Aid</h1>
+  <div class="row">
+    <div class="col-md-1">  <strong>File:</strong></div>
+    <div class="col-md-5">  <%= @findingaid.filename %></div>
+  </div>
+  <div class="row">
+    <div class="col-md-1">  <strong>Slug:</strong></div>
+    <div class="col-md-5">  <%= @findingaid.slug %></div>
+  </div>
+  <div class="row">
+    <div class="col-md-1">  <strong>Ead id:</strong></div>
+    <div class="col-md-5">  <%= @findingaid.eadid %></div>
+  </div>
+  <div class="row">
+    <div class="col-md-1">  <strong>Ead url:</strong></div>
+    <div class="col-md-5">  <%= @findingaid.eadurl %></div>
+  </div>
+  <div class="row">
+    <div class="col-md-1">  <strong>Md5:</strong></div>
+    <div class="col-md-5">  <%= @findingaid.md5sum %></div>
+  </div>
+  <div class="row">
+    <div class="col-md-1"><strong>Sha-1:</strong></div>
+    <div class="col-md-5"><%= @findingaid.sha1sum %></div>
+  </div>
+  <div class="row">
+    <div class="col-md-1">  <strong>Size:</strong></div>
+    <div class="col-md-5"><%= @findingaid.content.length %></div>
+  </div>
+  <div class="row">
+    <div class="col-md-1">  <strong>State:</strong></div>
+    <div class="col-md-5"><%= @findingaid.state %></div>
+  </div>
+  <div class="row">
+    <div class="col-md-1">  <strong>Error:</strong></div>
+    <div class="col-md-5"><%= @findingaid.error %></div>
+  </div>
+  <hr>
+  <%= link_to 'Edit', edit_findingaid_path(@findingaid) %> |
+  <%= link_to 'Back', findingaids_path %>
+  <hr>
+  <p>
+    <strong>Content:</strong>
+    <pre><%= @findingaid.content %></pre>
+  </p>
+  <hr>
+  <%= link_to 'Edit', edit_findingaid_path(@findingaid) %> |
+  <%= link_to 'Back', findingaids_path %>
+</div>

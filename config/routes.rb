@@ -9,6 +9,8 @@ Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
   def collection_slug_constraint
     /[a-zA-Z0-9-]+/
   end
+  
+  resources :findingaids
 
   get 'help', to: 'help#help'
 

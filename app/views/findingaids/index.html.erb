@@ -1,43 +1,43 @@
+<div class="container">
+
 <p id="notice"><%= notice %></p>
 
-<h1>Findingaids</h1>
+<h1>Finding Aids</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Filename</th>
-      <th>Content</th>
-      <th>Md5sum</th>
-      <th>Sha1sum</th>
-      <th>Slug</th>
-      <th>Eadid</th>
-      <th>Eadurl</th>
-      <th>State</th>
-      <th>Error</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <% @findingaids.each do |findingaid| %>
+    <hr>
+    <div class="row">
+      <div class="col-md-2">
+        <div>File</div>
+        <div>Slug</div>
+        <div>EAD ID</div>
+        <div>EAD URL</div>
+        <div>MD5</div>
+        <div>SHA-1</div>
+        <div>Size</div>
+        <div>State</div>
+        <div>Error</div>
+      </div>
+      <div class="col-md-7">
+        <div><%= findingaid.filename %>&nbsp;</div>
+        <div><%= findingaid.slug %>&nbsp;</div>
+        <div><%= findingaid.eadid %>&nbsp;</div>
+        <div><%= findingaid.eadurl %>&nbsp;</div>
+        <div><%= findingaid.md5sum %>&nbsp;</div>
+        <div><%= findingaid.sha1sum %>&nbsp;</div>
+        <div><%= findingaid.content.length %>&nbsp;</div>
+        <div><%= findingaid.state %>&nbsp;</div>
+        <div><%= findingaid.error %>&nbsp;</div>
+      </div>
+      <div class="col-md-3">
+        <div><%= link_to 'Show', findingaid %></div>
+        <div><%= link_to 'Edit', edit_findingaid_path(findingaid) %></div>
+        <div><%= link_to 'Destroy', findingaid, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+      </div>
+    </div>
+  <% end %>
 
-  <tbody>
-    <% @findingaids.each do |findingaid| %>
-      <tr>
-        <td><%= findingaid.filename %></td>
-        <td><%= findingaid.content %></td>
-        <td><%= findingaid.md5sum %></td>
-        <td><%= findingaid.sha1sum %></td>
-        <td><%= findingaid.slug %></td>
-        <td><%= findingaid.eadid %></td>
-        <td><%= findingaid.eadurl %></td>
-        <td><%= findingaid.state %></td>
-        <td><%= findingaid.error %></td>
-        <td><%= link_to 'Show', findingaid %></td>
-        <td><%= link_to 'Edit', edit_findingaid_path(findingaid) %></td>
-        <td><%= link_to 'Destroy', findingaid, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<!--<br>-->
 
-<br>
-
-<%= link_to 'New Findingaid', new_findingaid_path %>
+<%#= link_to 'New Findingaid', new_findingaid_padiv %>
+</div>

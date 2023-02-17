@@ -1,6 +1,15 @@
-<h1>Editing Findingaid</h1>
-
+<div class="container">
+<h1>Editing Finding Aid</h1>
 <%= render 'form', findingaid: @findingaid %>
-
+<hr>
 <%= link_to 'Show', @findingaid %> |
 <%= link_to 'Back', findingaids_path %>
+<hr>
+  <p>
+    <strong>Content:</strong>
+  <pre><%= @findingaid.content %></pre>
+  </p>
+<hr>
+<%= link_to 'Show', @findingaid %> |
+<%= link_to 'Back', findingaids_path %>
+</div>
