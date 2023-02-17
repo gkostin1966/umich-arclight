@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Findingaids</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Filename</th>
+      <th>Content</th>
+      <th>Md5sum</th>
+      <th>Sha1sum</th>
+      <th>Slug</th>
+      <th>Eadid</th>
+      <th>Eadurl</th>
+      <th>State</th>
+      <th>Error</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @findingaids.each do |findingaid| %>
+      <tr>
+        <td><%= findingaid.filename %></td>
+        <td><%= findingaid.content %></td>
+        <td><%= findingaid.md5sum %></td>
+        <td><%= findingaid.sha1sum %></td>
+        <td><%= findingaid.slug %></td>
+        <td><%= findingaid.eadid %></td>
+        <td><%= findingaid.eadurl %></td>
+        <td><%= findingaid.state %></td>
+        <td><%= findingaid.error %></td>
+        <td><%= link_to 'Show', findingaid %></td>
+        <td><%= link_to 'Edit', edit_findingaid_path(findingaid) %></td>
+        <td><%= link_to 'Destroy', findingaid, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Findingaid', new_findingaid_path %>

@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Filename:</strong>
+  <%= @findingaid.filename %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @findingaid.content %>
+</p>
+
+<p>
+  <strong>Md5sum:</strong>
+  <%= @findingaid.md5sum %>
+</p>
+
+<p>
+  <strong>Sha1sum:</strong>
+  <%= @findingaid.sha1sum %>
+</p>
+
+<p>
+  <strong>Slug:</strong>
+  <%= @findingaid.slug %>
+</p>
+
+<p>
+  <strong>Eadid:</strong>
+  <%= @findingaid.eadid %>
+</p>
+
+<p>
+  <strong>Eadurl:</strong>
+  <%= @findingaid.eadurl %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @findingaid.state %>
+</p>
+
+<p>
+  <strong>Error:</strong>
+  <%= @findingaid.error %>
+</p>
+
+<%= link_to 'Edit', edit_findingaid_path(@findingaid) %> |
+<%= link_to 'Back', findingaids_path %>
