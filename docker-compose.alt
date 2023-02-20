@@ -15,6 +15,7 @@ services:
       - "26162:26162" # RubyMine
     environment:
       - REDIS_URL=redis://redis:6379
+      - FINDING_AID_INGEST=true
     volumes:
       - .:/opt/app
       - data:/var/opt/app/data

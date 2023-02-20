@@ -33,6 +33,8 @@
         <div><%= link_to 'Show', findingaid %></div>
         <div><%= link_to 'Edit', edit_findingaid_path(findingaid) %></div>
         <div><%= link_to 'Destroy', findingaid, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+        <div>&nbsp;</div>
+        <div><%= link_to_if findingaid.slug.present?, "Reindex", reindex_findingaid_path(findingaid), method: :put %></div>
       </div>
     </div>
   <% end %>

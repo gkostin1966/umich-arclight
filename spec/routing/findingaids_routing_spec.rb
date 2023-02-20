@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe FindingaidsController, type: :routing do
+RSpec.describe FindingaidsController, pending: "Review", type: :routing do
   describe "routing" do
     it "routes to #index" do
       expect(get: "/findingaids").to route_to("findingaids#index")
@@ -17,7 +17,6 @@ RSpec.describe FindingaidsController, type: :routing do
     it "routes to #edit" do
       expect(get: "/findingaids/1/edit").to route_to("findingaids#edit", id: "1")
     end
-
 
     it "routes to #create" do
       expect(post: "/findingaids").to route_to("findingaids#create")

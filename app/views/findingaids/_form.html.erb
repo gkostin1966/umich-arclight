@@ -13,60 +13,60 @@
   <div class="row" class="field">
     <div class="col-md-1"><strong><%= form.label "File" %></strong></div>
     <div class="col-md-5">
-      <%= form.hidden_field :filename, readonly: true, disabled: true %>
+      <%#= form.hidden_field :filename, readonly: true, disabled: true %>
       <%= @findingaid.filename %>
     </div>
   </div>
   <div class="row" class="field">
     <div class="col-md-1"><strong><%= form.label :slug %></strong></div>
-    <div class="col-md-5"><%= form.text_field :slug %></div>
+    <div class="col-md-5"><%= form.collection_select :slug, Arclight::Repository.all, :slug, :name, include_blank:true %></div>
   </div>
   <div class="row" class="field">
     <div class="col-md-1"><strong><%= form.label "Ead id" %></strong></div>
     <div class="col-md-5">
-      <%= form.hidden_field :eadid, readonly: true, disabled: true %>
+      <%#= form.hidden_field :eadid, readonly: true, disabled: true %>
       <%= @findingaid.eadid %>
     </div>
   </div>
   <div class="row" class="field">
     <div class="col-md-1"><strong><%= form.label "Ead url" %></strong></div>
     <div class="col-md-5">
-      <%= form.hidden_field :eadurl, readonly: true, disabled: true %>
+      <%#= form.hidden_field :eadurl, readonly: true, disabled: true %>
       <%= @findingaid.eadurl %>
     </div>
   </div>
   <div class="row" class="field">
     <div class="col-md-1"><strong><%= form.label "Md5" %></strong></div>
     <div class="col-md-5">
-      <%= form.hidden_field :md5sum, readonly: true, disabled: true %>
+      <%#= form.hidden_field :md5sum, readonly: true, disabled: true %>
       <%= @findingaid.md5sum %>
     </div>
   </div>
   <div class="row" class="field">
     <div class="col-md-1"><strong><%= form.label "Sha-1" %></strong></div>
     <div class="col-md-5">
-      <%= form.hidden_field :sha1sum, readonly: true, disabled: true %>
+      <%#= form.hidden_field :sha1sum, readonly: true, disabled: true %>
       <%= @findingaid.sha1sum %>
     </div>
   </div>
   <div class="row" class="field">
     <div class="col-md-1"><strong><%= form.label "Size" %></strong></div>
     <div class="col-md-5">
-      <%= form.hidden_field :content, readonly: true, disabled: true %>
+      <%#= form.hidden_field :content, readonly: true, disabled: true %>
       <%= @findingaid.content.length %>
     </div>
   </div>
   <div class="row" class="field">
     <div class="col-md-1"><strong><%= form.label :state %></strong></div>
     <div class="col-md-5">
-      <%= form.hidden_field :state, readonly: true, disabled: true %>
+      <%#= form.hidden_field :state, readonly: true, disabled: true %>
       <%= @findingaid.state %>
     </div>
   </div>
   <div class="row" class="field">
     <div class="col-md-1"><strong><%= form.label :error %></strong></div>
     <div class="col-md-5">
-      <%= form.hidden_field :error, readonly: true, disabled: true %>
+      <%#= form.hidden_field :error, readonly: true, disabled: true %>
       <%= @findingaid.error %>
     </div>
   </div>

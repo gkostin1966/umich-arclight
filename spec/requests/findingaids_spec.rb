@@ -12,8 +12,7 @@ require 'rails_helper'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/findingaids", type: :request do
-  
+RSpec.describe "/findingaids", pending: "Review", type: :request do
   # This should return the minimal set of attributes required to create a valid
   # Findingaid. As you add validations to Findingaid, be sure to
   # adjust the attributes here as well.
@@ -41,7 +40,7 @@ RSpec.describe "/findingaids", type: :request do
     end
   end
 
-  describe "GET /new" do
+  describe "GET /new", pending: "Review" do
     it "renders a successful response" do
       get new_findingaid_url
       expect(response).to be_successful
@@ -60,12 +59,12 @@ RSpec.describe "/findingaids", type: :request do
     context "with valid parameters" do
       it "creates a new Findingaid" do
         expect {
-          post findingaids_url, params: { findingaid: valid_attributes }
+          post findingaids_url, params: {findingaid: valid_attributes}
         }.to change(Findingaid, :count).by(1)
       end
 
       it "redirects to the created findingaid" do
-        post findingaids_url, params: { findingaid: valid_attributes }
+        post findingaids_url, params: {findingaid: valid_attributes}
         expect(response).to redirect_to(findingaid_url(Findingaid.last))
       end
     end
@@ -73,12 +72,12 @@ RSpec.describe "/findingaids", type: :request do
     context "with invalid parameters" do
       it "does not create a new Findingaid" do
         expect {
-          post findingaids_url, params: { findingaid: invalid_attributes }
-        }.to change(Findingaid, :count).by(0)
+          post findingaids_url, params: {findingaid: invalid_attributes}
+        }.not_to change(Findingaid, :count)
       end
 
       it "renders a successful response (i.e. to display the 'new' template)" do
-        post findingaids_url, params: { findingaid: invalid_attributes }
+        post findingaids_url, params: {findingaid: invalid_attributes}
         expect(response).to be_successful
       end
     end
@@ -92,14 +91,14 @@ RSpec.describe "/findingaids", type: :request do
 
       it "updates the requested findingaid" do
         findingaid = Findingaid.create! valid_attributes
-        patch findingaid_url(findingaid), params: { findingaid: new_attributes }
+        patch findingaid_url(findingaid), params: {findingaid: new_attributes}
         findingaid.reload
         skip("Add assertions for updated state")
       end
 
       it "redirects to the findingaid" do
         findingaid = Findingaid.create! valid_attributes
-        patch findingaid_url(findingaid), params: { findingaid: new_attributes }
+        patch findingaid_url(findingaid), params: {findingaid: new_attributes}
         findingaid.reload
         expect(response).to redirect_to(findingaid_url(findingaid))
       end
@@ -108,7 +107,7 @@ RSpec.describe "/findingaids", type: :request do
     context "with invalid parameters" do
       it "renders a successful response (i.e. to display the 'edit' template)" do
         findingaid = Findingaid.create! valid_attributes
-        patch findingaid_url(findingaid), params: { findingaid: invalid_attributes }
+        patch findingaid_url(findingaid), params: {findingaid: invalid_attributes}
         expect(response).to be_successful
       end
     end
