@@ -97,11 +97,11 @@ class FindingaidsController < ApplicationController
   end
 
   def ingest_findingaids
-    env = {}
+    password = ENV['RCLONE_CONFIG_PASS'] || "password"
+    env = {"RCLONE_CONFIG_PASS" => password.to_s}
     dir = Rails.root.join('tmp/findingaids')
     Dir.mkdir(dir) unless Dir.exist?(dir)
-    cmd = "rclone move remote: #{dir}"
-    # cmd = "rclone copy remote: #{dir}"
+    cmd = "rclone --ask-password=false move remote: #{dir}"
 
     stdout_and_stderr, process_status = Open3.capture2e(env, cmd)
 

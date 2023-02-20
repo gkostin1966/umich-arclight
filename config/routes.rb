@@ -10,7 +10,7 @@ Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
     /[a-zA-Z0-9-]+/
   end
 
-  if ENV['FINDING_AID_INGEST']
+  if ENV['FINDING_AID_INGEST'] == 'true'
     resources :findingaids do
       member do
         put :reindex

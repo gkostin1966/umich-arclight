@@ -16,6 +16,7 @@ services:
     environment:
       - REDIS_URL=redis://redis:6379
       - FINDING_AID_INGEST=true
+      - RCLONE_CONFIG_PASS=${RCLONE_CONFIG_PASS}
     volumes:
       - .:/opt/app
       - data:/var/opt/app/data
