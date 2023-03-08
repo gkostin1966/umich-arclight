@@ -1,0 +1,46 @@
+<div class="col-md-12">
+  <div class="row">
+    <div class="col-md-4"><%= I18n.t("helpers.label.findingaid.reponame") %> [ <%= findingaid.reposlug %> ]</div>
+    <div class="col-md-8"> <%= link_to_if findingaid.reposlug.present?, Arclight::Repository.find_by(slug: findingaid.reposlug)&.name,   repository_url(findingaid.reposlug)  %></div>
+  </div>
+  <div class="row">
+    <div class="col-md-4"><%= I18n.t("helpers.label.findingaid.eadurl") %> [ <%= findingaid.eadslug %> ]</div>
+    <div class="col-md-8"><%= link_to_if findingaid.eadurl.present?, findingaid.eadurl,  solr_document_url(findingaid.eadid) %></div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">&nbsp;</div>
+    <div class="col-md-8">&nbsp;</div>
+  </div>
+  <div class="row">
+    <div class="col-md-4"><%= I18n.t("helpers.label.findingaid.filename") %></div>
+    <div class="col-md-8">  <%= findingaid.filename %></div>
+  </div>
+  <div class="row">
+    <div class="col-md-4"><%= I18n.t("helpers.label.findingaid.eadid") %></div>
+    <div class="col-md-8">  <%= findingaid.eadid %></div>
+  </div>
+  <div class="row">
+    <div class="col-md-4"><%= I18n.t("helpers.label.findingaid.corpname") %></div>
+    <div class="col-md-8">  <%= findingaid.corpname %></div>
+  </div>
+  <div class="row">
+    <div class="col-md-4"><%= I18n.t("helpers.label.findingaid.md5sum") %></div>
+    <div class="col-md-8">  <%= findingaid.md5sum %></div>
+  </div>
+  <div class="row">
+    <div class="col-md-4"><%= I18n.t("helpers.label.findingaid.sha1sum") %></div>
+    <div class="col-md-8"><%= findingaid.sha1sum %></div>
+  </div>
+  <div class="row">
+    <div class="col-md-4"><%= I18n.t("helpers.label.findingaid.size") %></div>
+    <div class="col-md-8"><%= number_to_human_size(findingaid.content.length) %></div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">&nbsp;</div>
+    <div class="col-md-8">&nbsp;</div>
+  </div>
+  <div class="row">
+    <div class="col-md-4"><%= I18n.t("helpers.label.findingaid.state") %></div>
+    <div class="col-md-8"><%= findingaid.state %> @ <%= findingaid.updated_at %></div>
+  </div>
+</div>

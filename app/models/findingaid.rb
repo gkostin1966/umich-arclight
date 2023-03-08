@@ -1,0 +1,2 @@
+class Findingaid < ApplicationRecord
+end

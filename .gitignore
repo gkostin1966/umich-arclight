@@ -5,11 +5,13 @@
 /.yarn
 /.vegas
 
+/data
+!/data/ead2002
 /log
 /node_modules
 /resque_web
 /spec/examples.txt
-/tmp
+**/tmp
 /vendor/bundle
 
 

@@ -10,6 +10,15 @@ Rails.application.routes.draw do # rubocop:disable Metrics/BlockLength
     /[a-zA-Z0-9-]+/
   end
 
+  if ENV['FINDING_AID_INGEST'] == 'true'
+    resources :findingaids do
+      member do
+        put :reindex
+      end
+    end
+    resources :slugmaps, only: %i[index destroy]
+  end
+
   get 'help', to: 'help#help'
 
   resources :repositories, only: %i[index show], controller: 'arclight/repositories' do
