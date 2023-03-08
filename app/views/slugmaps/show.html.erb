@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Corpname:</strong>
+  <%= @slugmap.corpname %>
+</p>
+
+<p>
+  <strong>Reponame:</strong>
+  <%= @slugmap.reponame %>
+</p>
+
+<p>
+  <strong>Reposlug:</strong>
+  <%= @slugmap.reposlug %>
+</p>
+
+<%= link_to 'Edit', edit_slugmap_path(@slugmap) %> |
+<%= link_to 'Back', slugmaps_path %>

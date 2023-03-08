@@ -1,0 +1,27 @@
+<div class="container">
+<p id="notice"><%= notice %></p>
+<h1>Finding Aids</h1>
+<%= link_to 'Upload Finding Aid', new_findingaid_path %>
+<% @findingaids.each do |findingaid| %>
+  <hr>
+  <div class="row">
+    <div class="col-md-11">
+      <%= render 'attributes', findingaid: findingaid %>
+    </div>
+    <div class="col-md-1">
+      <% reindex_flag = findingaid.reposlug.present? && findingaid.error.blank? && findingaid.eadurl.blank? %>
+      <div><%= link_to_if reindex_flag, "Index", reindex_findingaid_path(findingaid), method: :put %></div>
+      <div>&nbsp;</div>
+      <% show_flag = findingaid.error.present? %>
+      <div><%= link_to_if show_flag, 'Show', findingaid %></div>
+      <div>&nbsp;</div>
+      <% edit_flag = (findingaid.state == "uploaded") %>
+      <div><%= link_to_if edit_flag, 'Edit', edit_findingaid_path(findingaid) %></div>
+      <div>&nbsp;</div>
+      <div><%= link_to 'Destroy', findingaid, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+    </div>
+  </div>
+<% end %>
+<hr>
+<%= link_to 'Upload Finding Aid', new_findingaid_path %>
+</div>

@@ -1,0 +1,24 @@
+<div class="col-md-12">
+<%= form_with(model: findingaid, local: true) do |form| %>
+  <% if findingaid.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(findingaid.errors.count, "error") %> prohibited this findingaid from being saved:</h2>
+
+      <ul>
+      <% findingaid.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="row" class="field">
+    <div class="col-md-2"><%= form.label :reponame %></div>
+    <div class="col-md-4"><%= form.collection_select :reposlug, Arclight::Repository.all.sort_by(&:name), :slug, :name, include_blank:true %></div>
+  </div>
+  <br>
+  <div class="row" class="actions">
+    <div class="col-md-2"></div>
+    <div class="col-md-4"><%= form.submit "Confirm" %></div>
+  </div>
+<% end %>
+</div>

@@ -10,7 +10,7 @@
 /node_modules
 /resque_web
 /spec/examples.txt
-/tmp
+**/tmp
 /vendor/bundle
 
 

@@ -31,3 +31,24 @@
 
 en:
   hello: "Hello world"
+  helpers:
+    label:
+      findingaid:
+        content: 'EAD XML File'
+        corpname: 'corpname'
+        eadid: 'eadid'
+        eadslug: "EAD Key"
+        eadurl: "Collection"
+        error: "Error"
+        filename: 'file'
+        md5sum: "MD5"
+        reponame: "Repository"
+        reposlug: "Repository Key"
+        sha1sum: "SHA-1"
+        size: "Size"
+        slug: 'Repository'
+        state: "State"
+      slugmap:
+        corpname: "EAD corpname"
+        reponame: "Repository"
+        reposlug: "Slug"

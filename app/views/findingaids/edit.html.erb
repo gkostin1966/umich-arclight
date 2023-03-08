@@ -1,0 +1,33 @@
+<div class="container">
+  <p id="notice"><%= notice %></p>
+  <% if @findingaid.error.blank? %>
+    <h1>Finding Aid Repository</h1>
+  <hr>
+  <%= render 'form', findingaid: @findingaid %>
+    <% else %>
+  <h1>Invalid Finding Aid</h1>
+    <% end %>
+  <hr>
+  <%= render 'attributes', findingaid: @findingaid %>
+  <hr>
+<!--  <%#= link_to 'Show', @findingaid %> |-->
+  <%= link_to 'Back', findingaids_path %>
+  <% if @findingaid.error.present? %>
+    <hr>
+    <p>
+      <strong>Error:</strong>
+      <%= @findingaid.error.html_safe %>
+    </p>
+    <hr>
+<!--    <%#= link_to 'Show', @findingaid %> |-->
+    <%= link_to 'Back', findingaids_path %>
+  <% end %>
+<!--  <hr>-->
+<!--    <p>-->
+<!--      <strong>Content:</strong>-->
+<!--      <pre><%#= @findingaid.content %></pre>-->
+<!--    </p>-->
+<!--  <hr>-->
+<!--  <%#= link_to 'Show', @findingaid %> |-->
+  <%#= link_to 'Back', findingaids_path %>
+</div>

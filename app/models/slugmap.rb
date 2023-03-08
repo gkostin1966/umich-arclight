@@ -1,0 +1,2 @@
+class Slugmap < ApplicationRecord
+end
