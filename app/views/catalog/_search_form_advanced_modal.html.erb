@@ -17,8 +17,24 @@
           <%= render_hash_as_hidden_fields(search_state.params_for_search.except(:q, :search_field, :qt, :page, :utf8, :group, :scope).merge(f: (search_state.params_for_search[:f] || {}).except(:level_sim, :repository_sim, :collection_sim))) %>
           <%# DUL CUSTOMIZATION: default to group by collection %>
           <%= hidden_field_tag :group, 'true', { :id => "group" } %>
-          <%= hidden_field_tag "f[repository_sim][]", Array(params.dig(:f, :repository_sim)).first || @document && @document.repository, {id: 'repository'} if within_repository_context? %>
-          <%= hidden_field_tag "f[collection_sim][]", Array(params.dig(:f, :collection_sim)).first || @document && @document.collection_name, {id: 'collection'} if within_collection_context? %>
+          <%
+            repository = Array(params.dig(:f, :repository_sim)).first || @document && @document.repository
+            collection = Array(params.dig(:f, :collection_sim)).first || @document && @document.collection_name
+          %>
+          <%= hidden_field_tag "f[repository_sim][]", repository, {id: 'repository'} if within_repository_context? %>
+          <%= hidden_field_tag "f[collection_sim][]", collection, {id: 'collection'} if within_collection_context? %>
+
+          <% if repository.present? %>
+            <div class="form-group row">
+              <%= t('arclight.within_collection_dropdown.this_repository') + ': ' + repository %>
+            </div>
+          <% end %>
+
+          <% if collection.present? %>
+            <div class="form-group row">
+              <%= t('arclight.within_collection_dropdown.this_collection') + ': ' + collection %>
+            </div>
+          <% end %>
 
           <div class="form-group row">
             <%# select options %>
