@@ -10,6 +10,7 @@ env:
   RAILS_ENV: "test"
   DATABASE_URL: "postgresql://postgres:postgres@127.0.0.1:5432/umich-arclight-test"
   SOLR_URL: "http://127.0.0.1:8983/solr/umich-arclight-test"
+  FINDING_AID_DATA: "data"
 
 jobs:
   ci:

@@ -12,7 +12,7 @@
 /sample-ead
 !/sample-ead/ead
 /spec/examples.txt
-/tmp
+**/tmp
 /vendor/bundle
 
 .byebug_history

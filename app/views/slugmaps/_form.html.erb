@@ -1,0 +1,27 @@
+<%= form_with(model: slugmap, local: true) do |form| %>
+  <% if slugmap.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(slugmap.errors.count, "error") %> prohibited this slugmap from being saved:</h2>
+
+      <ul>
+      <% slugmap.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :corpname %>
+    <%= form.text_field :corpname %>
+  </div>
+
+  <div class="field">
+    <%= form.label :reposlug %>
+    <%= form.text_field :reposlug %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

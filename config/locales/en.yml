@@ -31,3 +31,20 @@
 
 en:
   hello: "Hello world"
+  helpers:
+    label:
+      findingaid:
+        content: 'content'
+        corpname: 'corpname'
+        eadid: 'eadid'
+        eadslug: "EAD Key"
+        eadurl: "Collection"
+        error: "Error"
+        filename: 'file'
+        reposlug: "Repository"
+        size: "size"
+        slug: 'Repository'
+        state: "Status"
+      slugmap:
+        corpname: "EAD corpname"
+        reposlug: "Slug"

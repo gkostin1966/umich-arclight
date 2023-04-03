@@ -1,0 +1,25 @@
+<% findingaid = @findingaid %>
+<div class="container">
+  <h1>Upload Finding Aid</h1>
+  <%= form_with(model: findingaid, local: true) do |form| %>
+    <% if findingaid.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(findingaid.errors.count, "error") %> prohibited this findingaid from being saved:</h2>
+        <ul>
+          <% findingaid.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <%= form.hidden_field error: "no file" %>
+    <div class="row">&nbsp;</div>
+    <div class="row" class="field">
+      <div><%= form.file_field :content %></div>
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row" class="actions">
+      <div><%= form.submit "Upload File" %></div>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,21 @@
+<div class="container">
+<p id="notice"><%= notice %></p>
+<h1>Slug Maps</h1>
+  <b>
+    <hr>
+    <div class="row">
+      <div class="col-md-1"><%= I18n.t("helpers.label.slugmap.reposlug") %></div>
+      <div class="col-md-10"><%= I18n.t("helpers.label.slugmap.corpname") %></div>
+      <div class="col-md-1"></div>
+    </div>
+    <hr>
+  </b>
+  <% @slugmaps.each do |slugmap| %>
+    <div class="row">
+      <div class="col-md-1"><%= slugmap.reposlug %></div>
+      <div class="col-md-10"><%= slugmap.corpname %></div>
+      <div class="col-md-1"><%= link_to 'Destroy', slugmap, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+    </div>
+    <hr>
+<% end %>
+</div>

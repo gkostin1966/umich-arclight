@@ -1,0 +1,25 @@
+<div class="container">
+  <p id="notice"><%= notice %></p>
+  <% if @findingaid.error.blank? %>
+
+<h1>Finding Aid</h1>
+    <% else %>
+    <h1>Invalid Finding Aid</h1>
+    <% end %>
+  <hr>
+  <%= render 'attributes', findingaid: @findingaid %>
+  <hr>
+  <%# edit_flag = (@findingaid.state == "uploaded") %>
+<!--  <%#= link_to_if edit_flag, 'Edit', edit_findingaid_path(@findingaid) %> |-->
+  <%= link_to 'Back', findingaids_path %>
+  <% if @findingaid.error.present? %>
+    <hr>
+    <p>
+      <strong>Error:</strong>
+      <%= @findingaid.error.html_safe %>
+    </p>
+    <hr>
+<!--    <%#= link_to_if edit_flag, 'Edit', edit_findingaid_path(@findingaid) %> |-->
+    <%= link_to 'Back', findingaids_path %>
+<% end %>
+</div>
