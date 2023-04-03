@@ -96,6 +96,33 @@ settings do
   provide 'solr_writer.commit_on_close', 'true'
   provide 'repository', ENV['REPOSITORY_ID']
   provide 'logger', Logger.new($stderr)
+
+  # This is a temporary borrowing the default traject handler with the record truncated...
+  # The logs should be handled more consistently, especially as it relates to background
+  # jobs and the different loggers/streams involved.
+  handler = ->(context, exception) {
+    record_output = context.source_record.to_s
+    if record_output.length > 500
+      record_output = record_output[0..500] + "... \n(record truncated after 500 characters)"
+    end
+
+    msg = "Unexpected error on record #{context.record_inspect}\n"
+    msg += "    while executing #{context.index_step.inspect}\n"
+
+    msg += begin
+             "\n    Record: #{record_output}\n"
+    rescue => to_s_exception
+             "\n    (Could not log record, #{to_s_exception})\n"
+    end
+
+    msg += Traject::Util.exception_to_log_message(exception)
+
+    context.logger&.error(msg)
+
+    raise exception
+  }
+
+  provide 'mapping_rescue', handler
 end
 
 each_record do |_record, context|
@@ -110,7 +137,12 @@ end
 # Top level document
 # ==================
 
-to_field 'id', extract_xpath('/ead/eadheader/eadid'), strip, gsub('.', '-')
+# to_field 'id', extract_xpath('/ead/eadheader/eadid'), strip, gsub('.', '-')
+to_field 'id' do |record, accumulator, _context|
+  id = record.xpath('/ead/eadheader/eadid')&.text&.strip&.gsub('.', '-')
+  accumulator << id unless id.nil? || id.empty?
+end
+
 # to get the filename for Aeon for SCRC and Clements
 to_field 'publicid_ssi', extract_xpath('/ead/eadheader/eadid/@publicid')
 

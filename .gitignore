@@ -9,10 +9,11 @@
 /log
 /node_modules
 /resque_web
+/sample-ead
+!/sample-ead/ead
 /spec/examples.txt
 /tmp
 /vendor/bundle
-
 
 .byebug_history
 .rspec_status
@@ -22,6 +23,3 @@
 
 # Don't Ignore .keep files
 !**/.keep
-
-/sample-ead/pdf
-/sample-ead/xml
